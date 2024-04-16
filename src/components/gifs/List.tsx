@@ -4,14 +4,13 @@ import GifCard from "./GifCard";
 import { GifsContext } from "../../store/GifsContext";
 
 const List = () => {
-  const { search, gifs, noResults, loading, onFetchMore } =
-    useContext(GifsContext);
+  const { gifs, noResults, loading, onFetchMore } = useContext(GifsContext);
 
   if (noResults) {
-    return <div className="p-4 italic">No results found for "{search}"</div>;
+    return <div className="p-4 italic">No results found</div>;
   }
 
-  if (search === "" || gifs.length === 0) {
+  if (!loading && gifs.length === 0) {
     return <div className="p-4 italic">Please search for a gif</div>;
   }
 

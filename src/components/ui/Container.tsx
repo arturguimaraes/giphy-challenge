@@ -3,7 +3,7 @@ interface Props {
 }
 
 const Container = ({ children }: Props) => {
-  return <div className="py-[4rem] mx-auto container">{children}</div>;
+  return <div className="py-[4rem] mx-auto container flex flex-col gap-4">{children}</div>;
 };
 
 export default Container;

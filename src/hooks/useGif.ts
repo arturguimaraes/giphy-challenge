@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Gif } from "../utils/types";
 import { GIPHY_API_CONFIGS } from "../utils/variables";
@@ -8,6 +9,8 @@ const useGif = () => {
   const [offset, setOffset] = useState<number>(0);
   const [noResults, setNoResults] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(false);
+  const [newSearch, setNewSearch] = useState<boolean>(false);
+  const [fetchMore, setFetchMore] = useState<boolean>(false);
 
   const handleClearData = () => {
     setSearch("");
@@ -22,7 +25,7 @@ const useGif = () => {
     setGifs([]);
     setNoResults(false);
     setLoading(false);
-    fetchData();
+    setNewSearch(true);
   };
 
   const fetchData = async () => {
@@ -53,12 +56,11 @@ const useGif = () => {
         throw new Error("Failed to fetch data");
       }
 
-      console.log(data);
-
       if (data.data.length === 0) {
-        setNoResults(true);
-        setGifs([]);
         setOffset(0);
+        setGifs([]);
+        setNoResults(true);
+        setLoading(false);
         return;
       }
 
@@ -77,13 +79,25 @@ const useGif = () => {
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   const handleFetchMore = () => {
-    fetchData();
+    setFetchMore(true);
   };
+
+  useEffect(() => {
+    if (newSearch) {
+      console.log(`New search: "${search}"`);
+      setNewSearch(false);
+      fetchData();
+    }
+  }, [newSearch]);
+
+  useEffect(() => {
+    if (fetchMore) {
+      console.log(`Fetching more for: "${search} (offset: ${offset}"`);
+      setFetchMore(false);
+      fetchData();
+    }
+  }, [fetchMore]);
 
   return {
     search,

@@ -4,15 +4,21 @@ import Card from "../ui/Card";
 import { GifsContext } from "../../store/GifsContext";
 
 const Search = () => {
+  const { search, gifs, setSearch, onNewSearch, onClearData } =
+    useContext(GifsContext);
+
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
   };
 
-  const { search, gifs, setSearch, onNewSearch, onClearData } =
-    useContext(GifsContext);
+  const handleKeyDown = (event: any) => {
+    if (event.key === "Enter") {
+      onNewSearch();
+    }
+  };
 
   return (
-    <div className="max-w-[500px] p-4">
+    <div className="max-w-[500px]">
       <Card>
         <div className="w-full flex flex-row gap-2">
           <input
@@ -21,6 +27,7 @@ const Search = () => {
             placeholder="Search your gifs here"
             value={search}
             onChange={handleOnChange}
+            onKeyDown={handleKeyDown}
           />
           <Button onClick={onNewSearch}>Go</Button>
           {gifs.length > 0 && <Button onClick={onClearData}>Clear</Button>}
