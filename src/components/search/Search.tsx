@@ -4,7 +4,7 @@ import Card from "../ui/Card";
 import { GifsContext } from "../../store/GifsContext";
 
 const Search = () => {
-  const { search, gifs, setSearch, onNewSearch, onClearData } =
+  const { search, gifs, loading, setSearch, onNewSearch, onClearData } =
     useContext(GifsContext);
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,7 +18,7 @@ const Search = () => {
   };
 
   return (
-    <div className="max-w-[500px]">
+    <div className="">
       <Card>
         <div className="w-full flex flex-row gap-2">
           <input
@@ -29,8 +29,14 @@ const Search = () => {
             onChange={handleOnChange}
             onKeyDown={handleKeyDown}
           />
-          <Button onClick={onNewSearch}>Go</Button>
-          {gifs.length > 0 && <Button onClick={onClearData}>Clear</Button>}
+          <Button disabled={loading} onClick={onNewSearch}>
+            {loading ? 'Searching...' : 'Search'}
+          </Button>
+          {gifs.length > 0 && (
+            <Button disabled={loading} onClick={onClearData}>
+              Clear
+            </Button>
+          )}
         </div>
       </Card>
     </div>

@@ -16,8 +16,7 @@
 `npm install -D tailwindcss`
 `npx tailwindcss init`
 
-
-Scenario
+## Scenario
 
 You are a web developer for the Acme Software company. You are asked to build an advanced prototype of an
 application that functions as a Gif browser. As the back-end doesn’t exist, you are asked to use an API that
@@ -29,16 +28,24 @@ Your mission is to create a single-page web application and connecting to the Gi
 Requirements
 
 Your project will be manually revised by an engineer according to the following requirements:
-• The page should never reload.
-
-• Provide a form to the user so they can perform a search against the database of Ghipy via the API.
-• Show the results on the thumbnails in a logical way. A great quantity of results must load in a way that
+- The page should never reload.
+- Provide a form to the user so they can perform a search against the database of Ghipy via the API.
+- Show the results on the thumbnails in a logical way. A great quantity of results must load in a way that
 performance is taken into account. Allow the user to load more results and use pagination. Also,
 provide a way for the user to clear the results.
-• Create code in a clean, readable way, allowing normal conventions.
-• Develop and test using Chrome/Chromium browser. Your work will be revised with that browser.
-• If you have any note or instructions about the exercise, please write them on the README.md
+- Create code in a clean, readable way, allowing normal conventions.
+- Develop and test using Chrome/Chromium browser. Your work will be revised with that browser.
+- If you have any note or instructions about the exercise, please write them on the README.md
+
 Giphy API Key for querying API:
+`pLURtkhVrUXr3KG25Gy5IvzziV5OrZGa`
 
-pLURtkhVrUXr3KG25Gy5IvzziV5OrZGa
+## Install and Run
 
+To run the application, run:
+`npm i` and `npm start`
+
+## Testing
+
+To test the application, run:
+`npm test`

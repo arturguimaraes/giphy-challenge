@@ -37,7 +37,7 @@ const useGif = () => {
 
     try {
       const response = await fetch(
-        `${GIPHY_API_CONFIGS.endpoint}?api_key=${GIPHY_API_CONFIGS.api_key}&q=${encodeURI(search)}&limit=${GIPHY_API_CONFIGS.limit}&offset=${offset}`,
+        `${GIPHY_API_CONFIGS.endpoint}?api_key=${GIPHY_API_CONFIGS.api_key}&q=${encodeURI(search)}&limit=${GIPHY_API_CONFIGS.gifsPerRow * GIPHY_API_CONFIGS.rowsPerRequest}&offset=${offset}`,
         {
           method: "GET",
           headers: {
@@ -93,7 +93,7 @@ const useGif = () => {
 
   useEffect(() => {
     if (fetchMore) {
-      console.log(`Fetching more for: "${search} (offset: ${offset}"`);
+      console.log(`Fetching more for: "${search}" (offset: ${offset})`);
       setFetchMore(false);
       fetchData();
     }
